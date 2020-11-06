@@ -1,0 +1,57 @@
+<div class="row">
+    <div class="col">
+        <h3 style="text-align: center; margin-bottom:20px;">Order Your Burger</h3>
+        <div class="row" style="margin-bottom: 20px;;">
+            <div class="col">
+                <form action='/' method='POST'>
+                    <div class="form-group">
+                        <label for="name">Burger Name</label>
+                        <input type="Text" class="form-control" id="name" name="name"
+                            placeholder="Please enter your burger name">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <ul class="list-group">
+                    {{#each select}}
+                    {{#if this.devoured }}
+                    <li class="list-group-item">
+                        <span>{{this.id}}&nbsp;</span>
+                        <span>{{this.burger_name}}&nbsp;</span>
+                        <form action='/{{this.id}}' method='GET' style="display:inline-block;">
+                            <button type="submit" class="btn btn-warning btn-sm">Devour it!</button>
+                        </form>
+                    </li>
+                    {{/if}}
+                    {{/each}}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col">
+        <div class="row">
+            <div class="col">
+                <h3 style="text-align: center; margin-bottom:20px;">DEVOURED</h3>
+                <ul class="list-group">
+                    {{#each select}}
+                    {{#if this.devoured }}
+                    {{else}}
+                    <li class="list-group-item">
+                        <span>{{this.id}}&nbsp;</span>
+                        <span>{{this.burger_name}}&nbsp;</span>
+                        <form action='/delete/{{this.id}}' method='GET' style="display:inline-block;">
+                            <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                        </form>
+                    </li>
+                    {{/if}}
+                    {{/each}}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
